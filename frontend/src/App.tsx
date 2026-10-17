@@ -3,10 +3,15 @@ import DrawingCanvas from './components/DrawingCanvas';
 import PromptPanel from './components/PromptPanel';
 import EquationPanel from './components/EquationPanel';
 
+export type Theme = 'light' | 'dark';
+
 function App() {
   const [drawingData, setDrawingData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  
+  // FIX: Added the missing theme state here
+  const [theme, setTheme] = useState<Theme>('dark');
 
   // Generate new equations via AI
   const handleGenerate = async (prompt: string) => {
@@ -52,8 +57,9 @@ function App() {
     <div style={{ display: 'flex', height: '100vh', backgroundColor: '#0a0a0a', color: '#fff', overflow: 'hidden' }}>
       {/* Left Sidebar (Desmos style) */}
       <div style={{ width: '400px', display: 'flex', flexDirection: 'column', borderRight: '1px solid #333', backgroundColor: '#141414', zIndex: 10, boxShadow: '2px 0 10px rgba(0,0,0,0.5)' }}>
-        <PromptPanel onGenerate={handleGenerate} isLoading={isLoading} />
+        <PromptPanel onGenerate={handleGenerate} isLoading={isLoading} theme={theme} />
         {error && <div style={{ color: '#ff6b6b', padding: '10px 20px', backgroundColor: 'rgba(255,0,0,0.1)' }}>{error}</div>}
+        {/* Pass theme here if EquationPanel is also expecting it */}
         <EquationPanel spec={drawingData?.spec} onUpdate={handleUpdateSpec} />
       </div>
       
