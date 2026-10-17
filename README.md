@@ -49,3 +49,7 @@ npm run dev
 
 If all goes well, you should be able to access the application at `http://localhost:5173`.
 
+
+**Add a prompt and start drawing using math equations!**
+<img width="1920" height="1045" alt="1792257488804871953" src="https://github.com/user-attachments/assets/fbb77e3a-ea0c-4c04-bc92-f1d8ef4bec33" />
+
